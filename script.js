@@ -93,6 +93,56 @@ const musicaFondo =
 
 
 /* =========================================================
+   VERIFICAR AUDIO
+========================================================= */
+
+if (musicaFondo) {
+
+    musicaFondo.volume = 0.45;
+
+    musicaFondo.addEventListener(
+        "loadeddata",
+        () => {
+
+            console.log(
+                "🎵 Música cargada correctamente."
+            );
+
+        }
+    );
+
+
+    musicaFondo.addEventListener(
+        "canplay",
+        () => {
+
+            console.log(
+                "🎵 El navegador puede reproducir la música."
+            );
+
+        }
+    );
+
+
+    musicaFondo.addEventListener(
+        "error",
+        () => {
+
+            console.error(
+                "❌ ERROR: No se pudo cargar a-thousand-years.mp3"
+            );
+
+            console.error(
+                "Verifica que el archivo esté en la misma carpeta que index.html."
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
    ELEMENTOS DEL JARDÍN
 ========================================================= */
 
@@ -279,7 +329,90 @@ const posicionesFlores = [
 
 
 /* =========================================================
-   COMENZAR + INICIAR MÚSICA
+   INICIAR MÚSICA
+========================================================= */
+
+function iniciarMusica() {
+
+    if (!musicaFondo) {
+
+        console.error(
+            "❌ No existe el elemento #musicaFondo."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        musicaFondo.volume = 0.45;
+
+
+        /*
+         * Reiniciamos desde el principio.
+         */
+
+        musicaFondo.currentTime = 0;
+
+
+        /*
+         * Forzamos la carga del archivo.
+         */
+
+        musicaFondo.load();
+
+
+        /*
+         * Intentamos reproducir inmediatamente.
+         */
+
+        const promesa =
+            musicaFondo.play();
+
+
+        if (
+            promesa !== undefined
+        ) {
+
+            promesa
+                .then(
+                    () => {
+
+                        console.log(
+                            "🎵 A Thousand Years comenzó correctamente."
+                        );
+
+                    }
+                )
+                .catch(
+                    error => {
+
+                        console.error(
+                            "❌ El navegador rechazó la reproducción:",
+                            error
+                        );
+
+                    }
+                );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "❌ Error iniciando la música:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   COMENZAR
 ========================================================= */
 
 comenzar.addEventListener(
@@ -287,39 +420,14 @@ comenzar.addEventListener(
     () => {
 
         /*
-         * La interacción del usuario con este botón
-         * permite al navegador reproducir el audio.
+         * IMPORTANTE:
+         * Esta función se ejecuta directamente como consecuencia
+         * del clic del usuario.
+         *
+         * Esto permite que el navegador autorice el audio.
          */
 
-        if (musicaFondo) {
-
-            musicaFondo.volume = 0.45;
-
-            const reproduccion =
-                musicaFondo.play();
-
-            /*
-             * play() devuelve una Promise.
-             * Si el navegador rechaza la reproducción,
-             * evitamos que aparezca un error en pantalla.
-             */
-
-            if (reproduccion !== undefined) {
-
-                reproduccion.catch(
-                    error => {
-
-                        console.log(
-                            "No se pudo iniciar la música:",
-                            error
-                        );
-
-                    }
-                );
-
-            }
-
-        }
+        iniciarMusica();
 
 
         inicio.style.display =
