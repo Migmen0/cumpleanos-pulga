@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para mi Pulga 💜</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     FONDO DECORATIVO
+========================================================= -->
+
+<div class="fondo-particulas" aria-hidden="true">
+
+    <span>✦</span>
+    <span>✧</span>
+    <span>♡</span>
+    <span>✦</span>
+    <span>✧</span>
+    <span>♡</span>
+    <span>✦</span>
+    <span>✧</span>
+
+</div>
+
+
+<!-- =========================================================
+     PANTALLA DE INICIO
+========================================================= -->
+
+<main class="inicio" id="inicio">
+
+    <div class="nube nube-1"></div>
+    <div class="nube nube-2"></div>
+
+    <div class="mariposa mariposa-1">🦋</div>
+    <div class="mariposa mariposa-2">🦋</div>
+
+    <div class="inicio-contenido">
+
+        <div class="flor-inicio">
+            🌸
+        </div>
+
+        <p class="etiqueta">
+            ✦ UNA PEQUEÑA SORPRESA ✦
+        </p>
+
+        <h1>
+            Para mi <span>Pulga</span> 💜
+        </h1>
+
+        <p class="inicio-texto">
+            Hoy alguien muy especial cumple
+            <strong>12 años</strong>...
+        </p>
+
+        <p class="inicio-subtexto">
+            y preparé un pequeño lugar secreto
+            solamente para ella. 🦋
+        </p>
+
+        <button class="boton-principal" id="comenzar">
+            Entrar al jardín
+            <span>🌷</span>
+        </button>
+
+        <p class="mini-texto">
+            Toca el botón para descubrir tu sorpresa
+        </p>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     JARDÍN SECRETO
+========================================================= -->
+
+<section class="jardin-seccion" id="juego">
+
+    <div class="mariposa mariposa-jardin-1">🦋</div>
+    <div class="mariposa mariposa-jardin-2">🦋</div>
+
+    <div class="seccion-cabecera">
+
+        <p class="etiqueta">
+            🌙 EL JARDÍN SECRETO
+        </p>
+
+        <h2>
+            Hay algo escondido entre las flores...
+        </h2>
+
+        <p>
+            Encontré <strong>12 pequeñas flores</strong>.
+            Cada una guarda un mensaje para ti.
+        </p>
+
+        <p class="jardin-frase-extra">
+            Cada flor que encuentres hará que este jardín
+            cobre un poquito más de vida. 🌸
+        </p>
+
+        <div class="contador">
+
+            <div class="contador-numero">
+
+                <span id="floresEncontradas">0</span>
+
+                <small>
+                    / 12
+                </small>
+
+            </div>
+
+            <div class="barra-contenedor">
+
+                <div
+                        class="barra-progreso"
+                        id="progreso">
+                </div>
+
+            </div>
+
+            <p>
+                flores descubiertas
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JARDÍN
+    ===================================================== -->
+
+    <div class="jardin" id="jardin">
+
+        <!-- Ambiente del jardín -->
+        <div class="jardin-resplandor jardin-resplandor-1"></div>
+        <div class="jardin-resplandor jardin-resplandor-2"></div>
+
+        <!-- Pétalos decorativos -->
+        <div
+                class="petalos-jardin"
+                id="petalosJardin"
+                aria-hidden="true">
+        </div>
+
+        <!-- Brillos -->
+        <div
+                class="brillos-jardin"
+                id="brillosJardin"
+                aria-hidden="true">
+        </div>
+
+        <!-- Hojas -->
+        <div class="hoja hoja-1">🌿</div>
+        <div class="hoja hoja-2">🌿</div>
+        <div class="hoja hoja-3">🍃</div>
+        <div class="hoja hoja-4">🌿</div>
+
+        <!-- Las 12 flores se generan con JavaScript -->
+
+    </div>
+
+
+    <div class="jardin-hint">
+
+        <span>🌸</span>
+
+        <span>
+            Busca las 12 flores
+        </span>
+
+        <span>✨</span>
+
+    </div>
+
+
+    <div class="ayuda-jardin">
+        Toca una flor para descubrir su pequeño secreto 🦋
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MODAL DE MENSAJE
+========================================================= -->
+
+<div class="mensaje-flor" id="mensajeFlor">
+
+    <div class="brillo-modal"></div>
+
+    <div class="mensaje-flor-contenido">
+
+        <button
+                class="cerrar-modal"
+                id="cerrarMensajeFlor"
+                aria-label="Cerrar"
+                type="button">
+            ×
+        </button>
+
+        <div
+                class="mensaje-flor-icono"
+                id="mensajeFlorIcono">
+            🌸
+        </div>
+
+        <p
+                class="mensaje-flor-numero"
+                id="mensajeFlorNumero">
+            FLOR 1 DE 12
+        </p>
+
+        <h3 id="tituloMensajeFlor">
+            Un pequeño recuerdo
+        </h3>
+
+        <div class="linea-decorativa">
+            ✦ ♡ ✦
+        </div>
+
+        <p id="textoMensajeFlor"></p>
+
+        <button
+                class="boton-continuar"
+                id="cerrarMensajeFlorBoton"
+                type="button">
+
+            Continuar
+            <span>💜</span>
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     SORPRESA
+========================================================= -->
+
+<section class="sorpresa" id="sorpresa">
+
+    <div class="sorpresa-estrellas">
+        ✦　✧　✦　✧　✦
+    </div>
+
+    <div class="sorpresa-mariposa">
+        🦋
+    </div>
+
+    <div class="caja-sorpresa-icono">
+        🌸
+    </div>
+
+    <p class="etiqueta">
+        ✨ LO LOGRASTE ✨
+    </p>
+
+    <h2>
+        Encontraste las 12 flores
+    </h2>
+
+    <p>
+        Pero espera...
+    </p>
+
+    <p class="sorpresa-texto">
+        todavía hay un último secreto
+        escondido en este jardín.
+    </p>
+
+    <button
+            class="boton-principal"
+            id="abrirRegalo">
+
+        🎁 Abrir mi regalo
+
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     REGALO
+========================================================= -->
+
+<section class="regalo" id="regalo">
+
+    <div class="regalo-contenido">
+
+        <div class="regalo-caja" id="regaloCaja">
+
+            <div class="regalo-tapa">
+                <span>🎀</span>
+            </div>
+
+            <div class="regalo-cuerpo">
+                🎁
+            </div>
+
+        </div>
+
+        <p class="etiqueta">
+            UN ÚLTIMO DETALLE
+        </p>
+
+        <h2>
+            Feliz cumpleaños,
+            <span>Pulga</span> 💜
+        </h2>
+
+        <p>
+            12 años.
+        </p>
+
+        <p class="regalo-frase">
+            12 flores.<br>
+            12 deseos.<br>
+            Y una carta escrita especialmente para ti.
+        </p>
+
+        <button
+                class="boton-principal"
+                id="abrirCarta">
+
+            💌 Abrir mi carta
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CARTA
+========================================================= -->
+
+<section class="carta-seccion" id="carta">
+
+    <div id="confeti"></div>
+
+    <div class="mariposa carta-mariposa-1">🦋</div>
+    <div class="mariposa carta-mariposa-2">🦋</div>
+
+
+    <!-- =====================================================
+         SOBRE
+    ===================================================== -->
+
+    <div
+            class="sobre-contenedor"
+            id="sobreContenedor">
+
+        <div class="sobre">
+
+            <div class="sobre-solapa">
+                💜
+            </div>
+
+            <div class="sobre-cuerpo">
+
+                <div class="sobre-sello">
+                    🦋
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="sobre-etiqueta">
+            Para mi Pulga
+        </p>
+
+        <p class="sobre-instruccion">
+            Hay algo que quiero decirte...
+        </p>
+
+        <button
+                class="boton-abrir-sobre"
+                id="abrirSobre"
+                type="button">
+
+            💌 Abrir carta
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         CARTA
+    ===================================================== -->
+
+    <div
+            class="carta"
+            id="cartaContenido">
+
+        <div class="carta-adornos">
+            ✦　🌸　✦
+        </div>
+
+        <p class="carta-pequena">
+            Para alguien muy especial...
+        </p>
+
+        <h1>
+            Feliz cumpleaños,
+            <span>Liseth</span> 💜
+        </h1>
+
+        <div class="carta-subtitulo">
+            Mi Pulga 🦋
+        </div>
+
+        <div class="separador">
+            🌸　✦　🌸
+        </div>
+
+
+        <!-- =================================================
+             DEDICATORIA
+        ================================================= -->
+
+        <div class="carta-dedicatoria">
+
+            <span class="dedicatoria-comilla">
+                “
+            </span>
+
+            <p>
+                Hay cosas que a veces es más bonito
+                escribirlas que decirlas...
+            </p>
+
+            <span class="dedicatoria-final">
+                ”
+            </span>
+
+        </div>
+
+
+        <!-- =================================================
+             FOTO
+        ================================================= -->
+
+        <div class="foto-carta">
+
+            <div class="foto-marco">
+
+                <div class="foto-placeholder">
+
+                    <span>📸</span>
+
+                    <p>
+                        Una foto especial
+                    </p>
+
+                    <small>
+                        Este lugar está esperando
+                        un recuerdo bonito.
+                    </small>
+
+                </div>
+
+            </div>
+
+            <p class="foto-pie">
+                Un recuerdo para guardar siempre 💜
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             TEXTO DE LA CARTA
+        ================================================= -->
+
+        <div class="carta-texto">
+
+            <p>
+                <strong>Mi querida Pulga:</strong>
+            </p>
+
+            <p>
+                Hoy es un día muy especial porque hace
+                <strong>12 años</strong> llegó al mundo una
+                personita que con el tiempo se convertiría
+                en alguien muy importante para mí.
+            </p>
+
+            <p>
+                Y aunque podría simplemente mandarte un
+                “Feliz cumpleaños” por WhatsApp, sentí que
+                mi Pulga se merecía algo un poquito más
+                especial.
+            </p>
+
+            <p>
+                Por eso hice este pequeño jardín y esta
+                carta para ti. 💜
+            </p>
+
+            <p>
+                Quería regalarte algo que no fuera solamente
+                un mensaje, sino un pequeño lugar que pudieras
+                recorrer, descubrir y guardar como un recuerdo
+                de este día.
+            </p>
+
+            <p>
+                Hoy comienzas una nueva etapa, llena de
+                sueños, aventuras, aprendizajes y momentos
+                que seguramente algún día recordarás con
+                una sonrisa.
+            </p>
+
+            <p>
+                Nunca dejes de ser tú. Sigue soñando,
+                riendo, aprendiendo y persiguiendo todo
+                aquello que te haga feliz.
+            </p>
+
+            <p>
+                Y recuerda que no importa cuántos años
+                cumplas, para mí siempre vas a ser
+                <strong>mi Pulga</strong>. 🥹
+            </p>
+
+            <p>
+                Espero que este nuevo año de tu vida esté
+                lleno de personas que te quieran de verdad,
+                momentos inolvidables y muchísimas razones
+                para sonreír.
+            </p>
+
+            <p>
+                Que cada uno de tus sueños encuentre su
+                camino y que nunca te falten motivos para
+                seguir adelante. ✨
+            </p>
+
+            <p>
+                Te deseo un cumpleaños increíble, Liseth.
+                Disfruta muchísimo tu día, porque hoy
+                celebramos tus <strong>12 años</strong>.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             DESPEDIDA
+        ================================================= -->
+
+        <div class="carta-despedida">
+
+            <p>
+                Y recuerda, Pulga...
+            </p>
+
+            <strong>
+                este jardín puede terminar,
+                pero todos los momentos bonitos
+                que te esperan apenas están comenzando. 🦋
+            </strong>
+
+        </div>
+
+
+        <!-- =================================================
+             FIRMA
+        ================================================= -->
+
+        <div class="firma">
+
+            <p>
+                Con mucho cariño,
+            </p>
+
+            <strong>
+                Tu tío ❤️
+            </strong>
+
+            <div>
+                🌸 🦋 🌸
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         BOTÓN PARA LOS 12 DESEOS
+    ===================================================== -->
+
+    <button
+            class="boton-deseos"
+            id="irDeseos"
+            type="button">
+
+        🌙 Tengo algo más para ti...
+
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     12 DESEOS
+========================================================= -->
+
+<section
+        class="deseos-seccion"
+        id="deseos">
+
+    <div class="deseos-decoracion" aria-hidden="true">
+
+        <span>✦</span>
+        <span>♡</span>
+        <span>✧</span>
+        <span>🌸</span>
+        <span>✦</span>
+        <span>♡</span>
+
+    </div>
+
+    <div class="luna">
+        🌙
+    </div>
+
+    <p class="etiqueta">
+        ✦ 12 DESEOS PARA TI ✦
+    </p>
+
+    <h2>
+        Uno por cada año
+    </h2>
+
+    <p class="deseos-intro">
+        Cierra los ojos un momento,
+        pide un deseo...
+        y descubre el siguiente. 💜
+    </p>
+
+
+    <div
+            class="deseo-card"
+            id="deseoCard">
+
+        <div class="deseo-numero">
+            DESEO <span id="numeroDeseo">1</span> DE 12
+        </div>
+
+        <div
+                class="deseo-icono"
+                id="deseoIcono">
+
+            ✨
+
+        </div>
+
+        <p id="textoDeseo">
+            Que nunca dejes de soñar,
+            incluso cuando tus sueños parezcan
+            demasiado grandes.
+        </p>
+
+        <button
+                class="boton-deseo"
+                id="siguienteDeseo"
+                type="button">
+
+            Siguiente deseo ✨
+
+        </button>
+
+    </div>
+
+
+    <div
+            class="final-deseos"
+            id="finalDeseos">
+
+        <div class="final-icono">
+            🦋
+        </div>
+
+        <h2>
+            Y este es el más importante...
+        </h2>
+
+        <p>
+            Que nunca olvides lo especial que eres,
+            que nunca dejes de creer en ti y que,
+            pase lo que pase, siempre tengas personas
+            que te quieran y quieran verte feliz.
+        </p>
+
+        <p class="final-amor">
+            Te quiero muchísimo, Pulga. 💜
+        </p>
+
+        <div class="final-flores">
+            🌸 🪻 🌷 🦋 🌷 🪻 🌸
+        </div>
+
+        <p class="fin">
+            FIN DE LA SORPRESA ✨
+        </p>
+
+    </div>
+
+</section>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
