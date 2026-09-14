@@ -93,12 +93,15 @@ const musicaFondo =
 
 
 /* =========================================================
-   VERIFICAR AUDIO
+   CONFIGURACIÓN DEL AUDIO
 ========================================================= */
 
 if (musicaFondo) {
 
     musicaFondo.volume = 0.45;
+
+    musicaFondo.muted = false;
+
 
     musicaFondo.addEventListener(
         "loadeddata",
@@ -125,6 +128,30 @@ if (musicaFondo) {
 
 
     musicaFondo.addEventListener(
+        "play",
+        () => {
+
+            console.log(
+                "🎵 La música comenzó a reproducirse."
+            );
+
+        }
+    );
+
+
+    musicaFondo.addEventListener(
+        "pause",
+        () => {
+
+            console.log(
+                "⏸️ La música está pausada."
+            );
+
+        }
+    );
+
+
+    musicaFondo.addEventListener(
         "error",
         () => {
 
@@ -138,6 +165,179 @@ if (musicaFondo) {
 
         }
     );
+
+}
+
+
+/* =========================================================
+   INTENTAR REPRODUCIR AUTOMÁTICAMENTE
+========================================================= */
+
+function intentarAutoplay() {
+
+    if (!musicaFondo) {
+
+        console.error(
+            "❌ No existe el elemento #musicaFondo."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        musicaFondo.volume = 0.45;
+
+        musicaFondo.muted = false;
+
+
+        const promesa =
+            musicaFondo.play();
+
+
+        if (
+            promesa !== undefined
+        ) {
+
+            promesa
+                .then(
+                    () => {
+
+                        console.log(
+                            "🎵 Autoplay permitido. Música iniciada automáticamente."
+                        );
+
+                    }
+                )
+                .catch(
+                    error => {
+
+                        console.warn(
+                            "⚠️ El navegador bloqueó el autoplay con sonido."
+                        );
+
+                        console.warn(
+                            "La música comenzará cuando el usuario interactúe con la página."
+                        );
+
+                        console.warn(
+                            "Detalle:",
+                            error
+                        );
+
+                    }
+                );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "❌ Error intentando reproducir la música:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   INTENTAR AUTOPLAY AL CARGAR LA PÁGINA
+========================================================= */
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+
+            intentarAutoplay();
+
+        }
+    );
+
+} else {
+
+    intentarAutoplay();
+
+}
+
+
+/* =========================================================
+   RESPALDO PARA EL PRIMER CLIC
+========================================================= */
+
+function iniciarMusica() {
+
+    if (!musicaFondo) {
+
+        console.error(
+            "❌ No existe el elemento #musicaFondo."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        musicaFondo.volume = 0.45;
+
+        musicaFondo.muted = false;
+
+
+        /*
+         * IMPORTANTE:
+         * No utilizamos musicaFondo.load()
+         * aquí porque el archivo ya está cargado
+         * y llamar a load() puede reiniciar
+         * el estado de reproducción.
+         */
+
+
+        const promesa =
+            musicaFondo.play();
+
+
+        if (
+            promesa !== undefined
+        ) {
+
+            promesa
+                .then(
+                    () => {
+
+                        console.log(
+                            "🎵 Música iniciada correctamente mediante interacción."
+                        );
+
+                    }
+                )
+                .catch(
+                    error => {
+
+                        console.error(
+                            "❌ El navegador rechazó la reproducción:",
+                            error
+                        );
+
+                    }
+                );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "❌ Error iniciando la música:",
+            error
+        );
+
+    }
 
 }
 
@@ -329,89 +529,6 @@ const posicionesFlores = [
 
 
 /* =========================================================
-   INICIAR MÚSICA
-========================================================= */
-
-function iniciarMusica() {
-
-    if (!musicaFondo) {
-
-        console.error(
-            "❌ No existe el elemento #musicaFondo."
-        );
-
-        return;
-
-    }
-
-
-    try {
-
-        musicaFondo.volume = 0.45;
-
-
-        /*
-         * Reiniciamos desde el principio.
-         */
-
-        musicaFondo.currentTime = 0;
-
-
-        /*
-         * Forzamos la carga del archivo.
-         */
-
-        musicaFondo.load();
-
-
-        /*
-         * Intentamos reproducir inmediatamente.
-         */
-
-        const promesa =
-            musicaFondo.play();
-
-
-        if (
-            promesa !== undefined
-        ) {
-
-            promesa
-                .then(
-                    () => {
-
-                        console.log(
-                            "🎵 A Thousand Years comenzó correctamente."
-                        );
-
-                    }
-                )
-                .catch(
-                    error => {
-
-                        console.error(
-                            "❌ El navegador rechazó la reproducción:",
-                            error
-                        );
-
-                    }
-                );
-
-        }
-
-    } catch (error) {
-
-        console.error(
-            "❌ Error iniciando la música:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
    COMENZAR
 ========================================================= */
 
@@ -420,11 +537,9 @@ comenzar.addEventListener(
     () => {
 
         /*
-         * IMPORTANTE:
-         * Esta función se ejecuta directamente como consecuencia
-         * del clic del usuario.
-         *
-         * Esto permite que el navegador autorice el audio.
+         * Este clic es una interacción real del usuario.
+         * Si el navegador había bloqueado el autoplay,
+         * aquí normalmente permitirá comenzar el audio.
          */
 
         iniciarMusica();
