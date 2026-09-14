@@ -85,6 +85,14 @@ const finalDeseos =
 
 
 /* =========================================================
+   MÚSICA DE FONDO
+========================================================= */
+
+const musicaFondo =
+    document.getElementById("musicaFondo");
+
+
+/* =========================================================
    ELEMENTOS DEL JARDÍN
 ========================================================= */
 
@@ -255,51 +263,79 @@ const floresIconos = [
 const posicionesFlores = [
 
     { left: 8, top: 12 },
-
     { left: 38, top: 8 },
-
     { left: 70, top: 13 },
-
     { left: 20, top: 28 },
-
     { left: 53, top: 25 },
-
     { left: 84, top: 32 },
-
     { left: 7, top: 48 },
-
     { left: 38, top: 45 },
-
     { left: 68, top: 52 },
-
     { left: 18, top: 68 },
-
     { left: 48, top: 70 },
-
     { left: 79, top: 72 }
 
 ];
 
 
 /* =========================================================
-   COMENZAR
+   COMENZAR + INICIAR MÚSICA
 ========================================================= */
 
 comenzar.addEventListener(
     "click",
     () => {
 
+        /*
+         * La interacción del usuario con este botón
+         * permite al navegador reproducir el audio.
+         */
+
+        if (musicaFondo) {
+
+            musicaFondo.volume = 0.45;
+
+            const reproduccion =
+                musicaFondo.play();
+
+            /*
+             * play() devuelve una Promise.
+             * Si el navegador rechaza la reproducción,
+             * evitamos que aparezca un error en pantalla.
+             */
+
+            if (reproduccion !== undefined) {
+
+                reproduccion.catch(
+                    error => {
+
+                        console.log(
+                            "No se pudo iniciar la música:",
+                            error
+                        );
+
+                    }
+                );
+
+            }
+
+        }
+
+
         inicio.style.display =
             "none";
 
+
         juego.style.display =
             "block";
+
 
         crearFlores();
 
         crearPetalosJardin();
 
         crearBrillosJardin();
+
 
         window.scrollTo({
             top: 0,
@@ -354,11 +390,6 @@ function crearFlores() {
                 posicion.top + "%";
 
 
-            /*
-             * Cada flor aparece con un pequeño
-             * retraso respecto a la anterior.
-             */
-
             flor.style.animationDelay =
                 `${index * 0.12}s, ${0.8 + index * 0.12}s`;
 
@@ -408,13 +439,11 @@ function crearPetalosJardin() {
 
 
     const simbolos = [
-
         "🌸",
         "🌷",
         "✦",
         "✧",
         "♡"
-
     ];
 
 
@@ -593,12 +622,6 @@ function descubrirFlor(
     }
 
 
-    /*
-     * Primero obtenemos la posición
-     * de la flor para crear la explosión
-     * exactamente donde fue pulsada.
-     */
-
     crearExplosionFlor(
         flor
     );
@@ -621,10 +644,6 @@ function descubrirFlor(
         encontradas;
 
 
-    /*
-     * Animación del contador.
-     */
-
     const contadorNumero =
         floresEncontradas.parentElement;
 
@@ -642,22 +661,17 @@ function descubrirFlor(
     );
 
 
-    /*
-     * Actualizar barra.
-     */
-
     const porcentaje =
-        (encontradas / TOTAL_FLORES) *
+        (
+            encontradas /
+            TOTAL_FLORES
+        ) *
         100;
 
 
     progreso.style.width =
         porcentaje + "%";
 
-
-    /*
-     * Vibración en celulares.
-     */
 
     if ("vibrate" in navigator) {
 
@@ -670,31 +684,8 @@ function descubrirFlor(
     }
 
 
-    /*
-     * Cada cierto número de flores,
-     * el jardín gana un poco más de vida.
-     */
-
     actualizarVidaJardin();
 
-
-    /*
-     * IMPORTANTE:
-     *
-     * index:
-     * identifica cuál flor fue seleccionada.
-     *
-     * encontradas:
-     * indica el número de descubrimiento.
-     *
-     * Ejemplo:
-     *
-     * Flor física 8 → FLOR 1 DE 12
-     * Flor física 3 → FLOR 2 DE 12
-     *
-     * El mensaje corresponde siempre
-     * a la flor pulsada.
-     */
 
     mostrarMensajeFlor(
         index,
@@ -718,13 +709,11 @@ function crearExplosionFlor(
 
 
     const simbolos = [
-
         "✦",
         "✧",
         "♡",
         "✨",
         "🌸"
-
     ];
 
 
@@ -911,11 +900,6 @@ function crearHaloFlor(
 
 function actualizarVidaJardin() {
 
-    /*
-     * Mientras más flores encuentra,
-     * más brillante se vuelve el jardín.
-     */
-
     const nivel =
         encontradas /
         TOTAL_FLORES;
@@ -929,12 +913,6 @@ function actualizarVidaJardin() {
     jardin.style.filter =
         `brightness(${brillo})`;
 
-
-    /*
-     * Al llegar a la mitad,
-     * hacemos que los resplandores
-     * sean más visibles.
-     */
 
     if (
         encontradas >=
@@ -956,12 +934,6 @@ function actualizarVidaJardin() {
 
     }
 
-
-    /*
-     * Cuando quedan solamente 3,
-     * el jardín empieza a sentirse
-     * más mágico.
-     */
 
     if (
         encontradas >=
@@ -1099,25 +1071,10 @@ function celebrarJardinCompleto() {
     );
 
 
-    /*
-     * Gran explosión central.
-     */
-
     crearExplosionJardin();
-
-
-    /*
-     * Un pequeño confeti extra.
-     */
 
     lanzarConfetiJardin();
 
-
-    /*
-     * Después quitamos el estado
-     * para no dejar el jardín
-     * permanentemente iluminado.
-     */
 
     setTimeout(
         () => {
@@ -1144,7 +1101,6 @@ function crearExplosionJardin() {
 
 
     const simbolos = [
-
         "🌸",
         "🌷",
         "🌺",
@@ -1153,7 +1109,6 @@ function crearExplosionJardin() {
         "🦋",
         "✦",
         "♡"
-
     ];
 
 
@@ -1263,13 +1218,11 @@ function crearExplosionJardin() {
 function lanzarConfetiJardin() {
 
     const simbolos = [
-
         "🌸",
         "✦",
         "✧",
         "♡",
         "✨"
-
     ];
 
 
@@ -1362,11 +1315,6 @@ function cerrarMensaje() {
     );
 
 
-    /*
-     * Si acaba de descubrir la última,
-     * primero celebramos el jardín.
-     */
-
     if (
         encontradas ===
         TOTAL_FLORES
@@ -1381,11 +1329,6 @@ function cerrarMensaje() {
             150
         );
 
-
-        /*
-         * Dejamos que disfrute la celebración
-         * antes de pasar a la siguiente pantalla.
-         */
 
         setTimeout(
             () => {
@@ -1803,12 +1746,10 @@ function mostrarDeseo() {
 function lanzarParticulasDeseo() {
 
     const simbolos = [
-
         "✦",
         "✧",
         "♡",
         "✨"
-
     ];
 
 
@@ -1843,7 +1784,10 @@ function lanzarParticulasDeseo() {
             (
                 rect.left +
                 rect.width / 2 +
-                (Math.random() * 180 - 90)
+                (
+                    Math.random() * 180 -
+                    90
+                )
             ) +
             "px";
 
@@ -1852,7 +1796,10 @@ function lanzarParticulasDeseo() {
             (
                 rect.top +
                 rect.height / 2 +
-                (Math.random() * 120 - 60)
+                (
+                    Math.random() * 120 -
+                    60
+                )
             ) +
             "px";
 
@@ -1894,11 +1841,16 @@ function lanzarParticulasDeseo() {
             () => {
 
                 const x =
-                    (Math.random() * 100) -
+                    (
+                        Math.random() * 100
+                    ) -
                     50;
 
+
                 const y =
-                    (Math.random() * 100) -
+                    (
+                        Math.random() * 100
+                    ) -
                     70;
 
 
@@ -2012,7 +1964,6 @@ siguienteDeseo.addEventListener(
 function lanzarConfeti() {
 
     const simbolos = [
-
         "✦",
         "✧",
         "♡",
@@ -2020,7 +1971,6 @@ function lanzarConfeti() {
         "🌸",
         "🦋",
         "✨"
-
     ];
 
 

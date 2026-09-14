@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +13,26 @@
 <body>
 
 <!-- =========================================================
+     MÚSICA DE FONDO
+========================================================= -->
+
+<audio
+        id="musicaFondo"
+        loop
+        preload="auto">
+    <source
+            src="a-thousand-years.mp3"
+            type="audio/mpeg">
+</audio>
+
+
+<!-- =========================================================
      FONDO DECORATIVO
 ========================================================= -->
 
-<div class="fondo-particulas" aria-hidden="true">
+<div
+        class="fondo-particulas"
+        aria-hidden="true">
 
     <span>✦</span>
     <span>✧</span>
@@ -33,13 +50,20 @@
      PANTALLA DE INICIO
 ========================================================= -->
 
-<main class="inicio" id="inicio">
+<main
+        class="inicio"
+        id="inicio">
 
     <div class="nube nube-1"></div>
     <div class="nube nube-2"></div>
 
-    <div class="mariposa mariposa-1">🦋</div>
-    <div class="mariposa mariposa-2">🦋</div>
+    <div class="mariposa mariposa-1">
+        🦋
+    </div>
+
+    <div class="mariposa mariposa-2">
+        🦋
+    </div>
 
     <div class="inicio-contenido">
 
@@ -65,9 +89,14 @@
             solamente para ella. 🦋
         </p>
 
-        <button class="boton-principal" id="comenzar">
+        <button
+                class="boton-principal"
+                id="comenzar"
+                type="button">
+
             Entrar al jardín
             <span>🌷</span>
+
         </button>
 
         <p class="mini-texto">
@@ -83,10 +112,17 @@
      JARDÍN SECRETO
 ========================================================= -->
 
-<section class="jardin-seccion" id="juego">
+<section
+        class="jardin-seccion"
+        id="juego">
 
-    <div class="mariposa mariposa-jardin-1">🦋</div>
-    <div class="mariposa mariposa-jardin-2">🦋</div>
+    <div class="mariposa mariposa-jardin-1">
+        🦋
+    </div>
+
+    <div class="mariposa mariposa-jardin-2">
+        🦋
+    </div>
 
     <div class="seccion-cabecera">
 
@@ -112,7 +148,9 @@
 
             <div class="contador-numero">
 
-                <span id="floresEncontradas">0</span>
+                <span id="floresEncontradas">
+                    0
+                </span>
 
                 <small>
                     / 12
@@ -142,33 +180,45 @@
          JARDÍN
     ===================================================== -->
 
-    <div class="jardin" id="jardin">
+    <div
+            class="jardin"
+            id="jardin">
 
-        <!-- Ambiente del jardín -->
-        <div class="jardin-resplandor jardin-resplandor-1"></div>
-        <div class="jardin-resplandor jardin-resplandor-2"></div>
+        <div
+                class="jardin-resplandor jardin-resplandor-1">
+        </div>
 
-        <!-- Pétalos decorativos -->
+        <div
+                class="jardin-resplandor jardin-resplandor-2">
+        </div>
+
         <div
                 class="petalos-jardin"
                 id="petalosJardin"
                 aria-hidden="true">
         </div>
 
-        <!-- Brillos -->
         <div
                 class="brillos-jardin"
                 id="brillosJardin"
                 aria-hidden="true">
         </div>
 
-        <!-- Hojas -->
-        <div class="hoja hoja-1">🌿</div>
-        <div class="hoja hoja-2">🌿</div>
-        <div class="hoja hoja-3">🍃</div>
-        <div class="hoja hoja-4">🌿</div>
+        <div class="hoja hoja-1">
+            🌿
+        </div>
 
-        <!-- Las 12 flores se generan con JavaScript -->
+        <div class="hoja hoja-2">
+            🌿
+        </div>
+
+        <div class="hoja hoja-3">
+            🍃
+        </div>
+
+        <div class="hoja hoja-4">
+            🌿
+        </div>
 
     </div>
 
@@ -197,7 +247,9 @@
      MODAL DE MENSAJE
 ========================================================= -->
 
-<div class="mensaje-flor" id="mensajeFlor">
+<div
+        class="mensaje-flor"
+        id="mensajeFlor">
 
     <div class="brillo-modal"></div>
 
@@ -208,19 +260,25 @@
                 id="cerrarMensajeFlor"
                 aria-label="Cerrar"
                 type="button">
+
             ×
+
         </button>
 
         <div
                 class="mensaje-flor-icono"
                 id="mensajeFlorIcono">
+
             🌸
+
         </div>
 
         <p
                 class="mensaje-flor-numero"
                 id="mensajeFlorNumero">
+
             FLOR 1 DE 12
+
         </p>
 
         <h3 id="tituloMensajeFlor">
@@ -252,7 +310,9 @@
      SORPRESA
 ========================================================= -->
 
-<section class="sorpresa" id="sorpresa">
+<section
+        class="sorpresa"
+        id="sorpresa">
 
     <div class="sorpresa-estrellas">
         ✦　✧　✦　✧　✦
@@ -285,7 +345,8 @@
 
     <button
             class="boton-principal"
-            id="abrirRegalo">
+            id="abrirRegalo"
+            type="button">
 
         🎁 Abrir mi regalo
 
@@ -298,11 +359,15 @@
      REGALO
 ========================================================= -->
 
-<section class="regalo" id="regalo">
+<section
+        class="regalo"
+        id="regalo">
 
     <div class="regalo-contenido">
 
-        <div class="regalo-caja" id="regaloCaja">
+        <div
+                class="regalo-caja"
+                id="regaloCaja">
 
             <div class="regalo-tapa">
                 <span>🎀</span>
@@ -335,7 +400,8 @@
 
         <button
                 class="boton-principal"
-                id="abrirCarta">
+                id="abrirCarta"
+                type="button">
 
             💌 Abrir mi carta
 
@@ -350,12 +416,19 @@
      CARTA
 ========================================================= -->
 
-<section class="carta-seccion" id="carta">
+<section
+        class="carta-seccion"
+        id="carta">
 
     <div id="confeti"></div>
 
-    <div class="mariposa carta-mariposa-1">🦋</div>
-    <div class="mariposa carta-mariposa-2">🦋</div>
+    <div class="mariposa carta-mariposa-1">
+        🦋
+    </div>
+
+    <div class="mariposa carta-mariposa-2">
+        🦋
+    </div>
 
 
     <!-- =====================================================
@@ -432,9 +505,7 @@
         </div>
 
 
-        <!-- =================================================
-             DEDICATORIA
-        ================================================= -->
+        <!-- DEDICATORIA -->
 
         <div class="carta-dedicatoria">
 
@@ -454,9 +525,7 @@
         </div>
 
 
-        <!-- =================================================
-             FOTO
-        ================================================= -->
+        <!-- FOTO -->
 
         <div class="foto-carta">
 
@@ -486,9 +555,7 @@
         </div>
 
 
-        <!-- =================================================
-             TEXTO DE LA CARTA
-        ================================================= -->
+        <!-- TEXTO DE LA CARTA -->
 
         <div class="carta-texto">
 
@@ -563,9 +630,7 @@
         </div>
 
 
-        <!-- =================================================
-             DESPEDIDA
-        ================================================= -->
+        <!-- DESPEDIDA -->
 
         <div class="carta-despedida">
 
@@ -582,9 +647,7 @@
         </div>
 
 
-        <!-- =================================================
-             FIRMA
-        ================================================= -->
+        <!-- FIRMA -->
 
         <div class="firma">
 
@@ -605,9 +668,7 @@
     </div>
 
 
-    <!-- =====================================================
-         BOTÓN PARA LOS 12 DESEOS
-    ===================================================== -->
+    <!-- BOTÓN PARA LOS 12 DESEOS -->
 
     <button
             class="boton-deseos"
@@ -629,7 +690,9 @@
         class="deseos-seccion"
         id="deseos">
 
-    <div class="deseos-decoracion" aria-hidden="true">
+    <div
+            class="deseos-decoracion"
+            aria-hidden="true">
 
         <span>✦</span>
         <span>♡</span>
@@ -728,6 +791,10 @@
 
 </section>
 
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
 <script src="script.js"></script>
 
